@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: bookinguru-dashboard-demo
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python seed_data.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: AUTH_DISABLED
+        value: "true"
+      - key: DASHBOARD_USER
+        value: bookinguru
+      - key: DASHBOARD_PASS
+        value: investor2026
+      - key: AUTO_SYNC
+        value: "false"
